@@ -6,6 +6,8 @@ const guessBtn = document.getElementById("guess-btn");
 const randomIndex = Math.floor(Math.random() * 5);
 const wordLength = document.getElementById("word-length");
 const hint = document.getElementById("hint");
+let guess = guessInput.value;
+let state;
 let livesRemaining = 5;
 // Information for the word as well as the description hint
 const words = [
@@ -37,17 +39,16 @@ const checkWinnerFunction = () => {
     .replace(/,/g, "");
   console.log(replace);
   wordText.innerText = replace.toUpperCase();
+  guess = "";
 };
 
 guessBtn.addEventListener("click", (e) => {
-  let guess = guessInput.value;
   // Logic that tells whether guess is correct
   if (randomWord[0].includes(guess)) {
     gameState.innerText = "You guessed correctly!";
-    guess = "";
     checkWinnerFunction();
-    // Incorrect guess logic
   } else {
+    // Incorrect guess logic
     livesRemaining--;
     gameState.innerText = `You guessed incorrectly. You have ${livesRemaining} lives left...`;
     guess = "";
