@@ -26,22 +26,26 @@ wordLength.innerText = `Your word has ${randomWord[0].length} letters`;
 let letters = answerArray.map((letter) => "__ ");
 wordText.innerText = letters.join("");
 
+const checkWinnerFunction = () => {
+  // Logic that manipulates the array
+  let newArray = answerArray.map((letter) => guess.includes(letter));
+  let stringify = newArray.toString();
+  // Replaces string text
+  let replace = stringify
+    .replace(/false/gi, "__ ")
+    .replace(/true/gi, guess)
+    .replace(/,/g, "");
+  console.log(replace);
+  wordText.innerText = replace.toUpperCase();
+};
+
 guessBtn.addEventListener("click", (e) => {
   let guess = guessInput.value;
   // Logic that tells whether guess is correct
   if (randomWord[0].includes(guess)) {
     gameState.innerText = "You guessed correctly!";
-    // Logic that manipulates the array
-    let newArray = answerArray.map((letter) => guess.includes(letter));
-    let stringify = newArray.toString();
-    // Replaces string text
-    let replace = stringify
-      .replace(/false/gi, "__ ")
-      .replace(/true/gi, guess)
-      .replace(/,/g, "");
-    console.log(replace);
-    wordText.innerText = replace.toUpperCase();
     guess = "";
+    checkWinnerFunction();
     // Incorrect guess logic
   } else {
     livesRemaining--;
