@@ -3,13 +3,16 @@ const wordText = document.getElementById("word-text");
 const remainingGuesses = document.getElementById("remaining-text");
 const guessInput = document.getElementById("guess-input");
 const guessBtn = document.getElementById("guess-btn");
-const randomIndex = Math.floor(Math.random() * 2);
+const randomIndex = Math.floor(Math.random() * 5);
 const wordLength = document.getElementById("word-length");
 const hint = document.getElementById("hint");
 let livesRemaining = 5;
 const words = [
   ["strawberry", "A fruit with 200 seeds"],
   ["coffee", "I can't go to work without it."],
+  ["guitar", "6 strings, and lots of shredding"],
+  ["ghostface", "Scream"],
+  ["leatherface", "Texas Chainsaw Massacre"],
 ];
 const randomWord = words[randomIndex];
 let answerArray = randomWord[0].split("");
