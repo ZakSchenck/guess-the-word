@@ -6,7 +6,6 @@ const guessBtn = document.getElementById("guess-btn");
 const randomIndex = Math.floor(Math.random() * 5);
 const wordLength = document.getElementById("word-length");
 const hint = document.getElementById("hint");
-let guess = guessInput.value;
 let state;
 let livesRemaining = 5;
 // Information for the word as well as the description hint
@@ -28,8 +27,12 @@ wordLength.innerText = `Your word has ${randomWord[0].length} letters`;
 let letters = answerArray.map((letter) => "__ ");
 wordText.innerText = letters.join("");
 
-const checkWinnerFunction = () => {
-  // Logic that manipulates the array
+guessBtn.addEventListener("click", (e) => {
+  // Logic that tells whether guess is correct
+  let guess = guessInput.value
+  if (randomWord[0].includes(guess)) {
+    gameState.innerText = "You guessed correctly!";
+     // Logic that manipulates the array
   let newArray = answerArray.map((letter) => guess.includes(letter));
   let stringify = newArray.toString();
   // Replaces string text
@@ -39,14 +42,6 @@ const checkWinnerFunction = () => {
     .replace(/,/g, "");
   console.log(replace);
   wordText.innerText = replace.toUpperCase();
-  guess = "";
-};
-
-guessBtn.addEventListener("click", (e) => {
-  // Logic that tells whether guess is correct
-  if (randomWord[0].includes(guess)) {
-    gameState.innerText = "You guessed correctly!";
-    checkWinnerFunction();
   } else {
     // Incorrect guess logic
     livesRemaining--;
