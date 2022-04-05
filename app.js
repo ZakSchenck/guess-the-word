@@ -6,8 +6,6 @@ const guessBtn = document.getElementById("guess-btn");
 const randomIndex = Math.floor(Math.random() * 5);
 const wordLength = document.getElementById("word-length");
 const hint = document.getElementById("hint");
-let g = []
-let state;
 let livesRemaining = 5;
 // Information for the word as well as the description hint
 const words = [
@@ -39,10 +37,10 @@ guessBtn.addEventListener("click", (e) => {
       if (newArray[i] === true) {
         newArray[i] = guessInput.value;
       } else {
-          newArray[i] = '_';
+        newArray[i] = "_";
       }
     }
-    console.log(newArray)
+    console.log(newArray);
   } else {
     // Incorrect guess logic
     livesRemaining--;
